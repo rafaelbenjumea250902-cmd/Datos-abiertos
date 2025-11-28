@@ -1,0 +1,11 @@
+# Streamlit
+streamlit==1.39.0
+
+# Data processing
+pandas==2.2.3
+
+# Google Gemini API (nueva librería oficial)
+google-genai==0.2.2
+
+# Utilidades
+python-dotenv==1.0.1
