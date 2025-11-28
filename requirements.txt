@@ -1,4 +1,0 @@
-streamlit==1.39.0
-pandas==2.2.3
-huggingface-hub==0.26.5
-python-dotenv==1.0.1
