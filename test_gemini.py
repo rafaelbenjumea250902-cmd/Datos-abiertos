@@ -30,8 +30,7 @@ try:
         genai.configure(api_key=api_key)
         
         # Crear modelo
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        
+        model = genai.GenerativeModel('gemini-1.5-flash-latest')        
         # Hacer una llamada simple
         response = model.generate_content(
             "Responde en español con una sola palabra: éxito",
