@@ -1,11 +1,4 @@
-# Streamlit
-streamlit==1.29.0
-
-# Data processing
-pandas==2.1.4
-
-# Hugging Face para el LLM
-huggingface-hub==0.19.4
-
-# Utilidades
-python-dotenv==1.0.0
+streamlit==1.39.0
+pandas==2.2.3
+huggingface-hub==0.26.5
+python-dotenv==1.0.1
