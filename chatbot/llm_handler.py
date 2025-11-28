@@ -12,12 +12,16 @@ class ChatbotHandler:
         self.data_processor = DataProcessor()
         self.data_loaded = self.data_processor.load_data()
         
-        # Inicializar cliente de Hugging Face
+        # Inicializar cliente de Hugging Face con nueva API
         # Usando modelo gratuito de Hugging Face
+        token = os.getenv("HUGGINGFACE_TOKEN")
+        
         self.client = InferenceClient(
-            model="mistralai/Mistral-7B-Instruct-v0.2",
-            token=os.getenv("HUGGINGFACE_TOKEN")  # Token opcional para mayor límite
+            token=token,
+            base_url="https://router.huggingface.co"
         )
+        
+        self.model = "mistralai/Mistral-7B-Instruct-v0.2"
         
         # Sistema de prompts
         self.system_prompt = self._build_system_prompt()
@@ -69,6 +73,7 @@ Responde siempre de manera útil y basada en datos.
             # Generar respuesta usando Hugging Face Inference API
             response = self.client.text_generation(
                 full_prompt,
+                model=self.model,
                 max_new_tokens=max_tokens,
                 temperature=0.7,
                 top_p=0.95,
