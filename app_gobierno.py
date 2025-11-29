@@ -27,7 +27,7 @@ st.markdown("""
     /* Fondo blanco */
     .main {
         background: #ffffff;
-        padding: 1.5rem 1rem !important;
+        padding: 0.5rem 1rem !important;
     }
     
     .stApp {
@@ -35,24 +35,32 @@ st.markdown("""
     }
     
     .block-container {
-        padding-top: 0.5rem !important;
+        padding-top: 0rem !important;
         padding-bottom: 1rem !important;
         max-width: 100% !important;
     }
     
-    /* Columnas */
+    /* Alinear columnas arriba */
+    .row-widget.stHorizontal {
+        align-items: flex-start !important;
+    }
+    
+    div[data-testid="column"] > div {
+        height: 100%;
+    }
+    
+    /* Columnas alineadas arriba */
     [data-testid="column"] {
         padding: 0.5rem;
+        vertical-align: top;
     }
     
-    /* Power BI iframe */
-    iframe {
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Forzar alineación superior */
+    [data-testid="stVerticalBlock"] > [data-testid="column"] {
+        align-self: flex-start;
     }
     
-    /* CHAT CONTAINER - Altura fija */
+    /* CHAT CONTAINER - Altura fija, alineado arriba */
     .chat-container {
         height: calc(100vh - 4rem);
         display: flex;
@@ -61,6 +69,7 @@ st.markdown("""
         border: 1px solid #e5e7eb;
         border-radius: 8px;
         overflow: hidden;
+        margin-top: 0;
     }
     
     /* Header del chat */
