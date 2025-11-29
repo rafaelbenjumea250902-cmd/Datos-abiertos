@@ -72,7 +72,7 @@ st.markdown("""
     
     /* CHAT CONTAINER */
     .chat-container {
-        height: calc(100vh - 1rem);
+        height: 650px;
         display: flex;
         flex-direction: column;
         background: #ffffff;
@@ -106,10 +106,21 @@ st.markdown("""
     .chat-messages {
         flex: 1;
         overflow-y: auto;
+        overflow-x: hidden;
         padding: 1rem;
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
+        max-height: calc(650px - 130px); /* Altura total - header - input */
+    }
+    
+    /* Contenedor de chat de Streamlit */
+    [data-testid="stChatMessageContainer"] {
+        max-height: calc(650px - 130px);
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
     }
     
     /* Mensajes */
@@ -215,6 +226,38 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# JavaScript para auto-scroll al final (como WhatsApp)
+st.components.v1.html("""
+    <script>
+    function scrollChatToBottom() {
+        // Buscar el contenedor de mensajes de Streamlit
+        const messagesContainer = window.parent.document.querySelector('[data-testid="stVerticalBlock"]');
+        if (messagesContainer) {
+            // Scroll suave al final
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        // También intentar con otros selectores
+        const chatMessages = window.parent.document.querySelector('.chat-messages');
+        if (chatMessages) {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    }
+    
+    // Ejecutar al cargar
+    setTimeout(scrollChatToBottom, 100);
+    setTimeout(scrollChatToBottom, 500);
+    setTimeout(scrollChatToBottom, 1000);
+    
+    // Observar cambios en el DOM
+    const observer = new MutationObserver(scrollChatToBottom);
+    const targetNode = window.parent.document.body;
+    if (targetNode) {
+        observer.observe(targetNode, { childList: true, subtree: true });
+    }
+    </script>
+""", height=0)
+
 # Crear 2 columnas con proporción 7:3
 col_dashboard, col_chat = st.columns([7, 3], gap="small")
 
@@ -222,7 +265,7 @@ col_dashboard, col_chat = st.columns([7, 3], gap="small")
 with col_dashboard:
     # URL de Power BI
     POWER_BI_URL = "https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9"
-    components.iframe(POWER_BI_URL, height=880, scrolling=True)
+    components.iframe(POWER_BI_URL, height=650, scrolling=True)
 
 # ========== CHATBOT ==========
 with col_chat:
@@ -233,19 +276,19 @@ with col_chat:
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
     
-    # Contenedor del chat con altura fija
-    chat_container = st.container()
+    # Header
+    st.markdown("""
+        <div class="chat-header">
+            <h3>💬 Asistente Virtual</h3>
+            <p>Consulta sobre seguridad en Santander</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    # Container con altura fija y scroll
+    chat_container = st.container(height=500)
     
     with chat_container:
-        # Header
-        st.markdown("""
-            <div class="chat-header">
-                <h3>💬 Asistente Virtual</h3>
-                <p>Consulta sobre seguridad en Santander</p>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        # Mensajes
+        # Mensaje de bienvenida
         if len(st.session_state.chat_history) == 0:
             st.markdown("""
                 <div class="welcome-message">
@@ -260,7 +303,7 @@ with col_chat:
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
     
-    # Input (fuera del container para que esté siempre visible)
+    # Input (fuera del container)
     if user_input := st.chat_input("Escribe tu consulta aquí..."):
         st.session_state.chat_history.append({"role": "user", "content": user_input})
         
