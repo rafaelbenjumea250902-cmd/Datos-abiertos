@@ -10,24 +10,27 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# CSS Mejorado con chat fijo
+# CSS con Grid Layout para control total
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
     
     * {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
     
-    /* Ocultar branding de Streamlit */
+    /* Ocultar branding */
     #MainMenu, footer, header, .stDeployButton { 
         visibility: hidden; 
     }
     
-    /* Fondo blanco */
+    /* Fondo blanco sin padding */
     .main {
         background: #ffffff;
-        padding: 0.5rem 1rem !important;
+        padding: 0 !important;
     }
     
     .stApp {
@@ -35,41 +38,47 @@ st.markdown("""
     }
     
     .block-container {
-        padding-top: 0rem !important;
-        padding-bottom: 1rem !important;
+        padding: 0 !important;
         max-width: 100% !important;
     }
     
-    /* Alinear columnas arriba */
-    .row-widget.stHorizontal {
+    /* Eliminar gaps de columnas */
+    [data-testid="column"] {
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+    
+    .row-widget {
+        gap: 0 !important;
+    }
+    
+    /* Forzar alineación superior en columnas */
+    [data-testid="stHorizontalBlock"] {
+        gap: 0.5rem !important;
         align-items: flex-start !important;
     }
     
-    div[data-testid="column"] > div {
-        height: 100%;
-    }
-    
-    /* Columnas alineadas arriba */
-    [data-testid="column"] {
+    [data-testid="column"] > div {
         padding: 0.5rem;
-        vertical-align: top;
     }
     
-    /* Forzar alineación superior */
-    [data-testid="stVerticalBlock"] > [data-testid="column"] {
-        align-self: flex-start;
+    /* Power BI iframe */
+    iframe {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        display: block;
     }
     
-    /* CHAT CONTAINER - Altura fija, alineado arriba */
+    /* CHAT CONTAINER */
     .chat-container {
-        height: calc(100vh - 4rem);
+        height: calc(100vh - 1rem);
         display: flex;
         flex-direction: column;
         background: #ffffff;
         border: 1px solid #e5e7eb;
         border-radius: 8px;
         overflow: hidden;
-        margin-top: 0;
     }
     
     /* Header del chat */
@@ -93,7 +102,7 @@ st.markdown("""
         opacity: 0.9;
     }
     
-    /* Área de mensajes con scroll */
+    /* Área de mensajes */
     .chat-messages {
         flex: 1;
         overflow-y: auto;
@@ -103,7 +112,7 @@ st.markdown("""
         gap: 0.75rem;
     }
     
-    /* Mensajes del chat */
+    /* Mensajes */
     .stChatMessage {
         background: #f9fafb;
         border-radius: 12px;
@@ -154,24 +163,6 @@ st.markdown("""
         outline: none !important;
     }
     
-    /* Scrollbar del chat */
-    .chat-messages::-webkit-scrollbar {
-        width: 6px;
-    }
-    
-    .chat-messages::-webkit-scrollbar-track {
-        background: #f9fafb;
-    }
-    
-    .chat-messages::-webkit-scrollbar-thumb {
-        background: #d1d5db;
-        border-radius: 3px;
-    }
-    
-    .chat-messages::-webkit-scrollbar-thumb:hover {
-        background: #9ca3af;
-    }
-    
     /* Mensaje de bienvenida */
     .welcome-message {
         background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
@@ -196,10 +187,10 @@ st.markdown("""
         line-height: 1.5;
     }
     
-    /* Scrollbar general */
+    /* Scrollbars */
     ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
     }
     
     ::-webkit-scrollbar-track {
@@ -208,7 +199,7 @@ st.markdown("""
     
     ::-webkit-scrollbar-thumb {
         background: #d1d5db;
-        border-radius: 4px;
+        border-radius: 3px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
@@ -224,55 +215,17 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# JavaScript para auto-scroll del chat
-st.markdown("""
-    <script>
-    function scrollToBottom() {
-        const chatMessages = document.querySelector('.chat-messages');
-        if (chatMessages) {
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-    }
-    
-    // Ejecutar después de que cargue la página
-    setTimeout(scrollToBottom, 100);
-    
-    // Observar cambios en el chat
-    const observer = new MutationObserver(scrollToBottom);
-    const chatContainer = document.querySelector('.chat-messages');
-    if (chatContainer) {
-        observer.observe(chatContainer, { childList: true, subtree: true });
-    }
-    </script>
-""", unsafe_allow_html=True)
+# Crear 2 columnas con proporción 7:3
+col_dashboard, col_chat = st.columns([7, 3], gap="small")
 
-# Crear 2 columnas: Dashboard (70%) y Chatbot (30%)
-col_dashboard, col_chat = st.columns([7, 3])
-
-# ========== COLUMNA IZQUIERDA: DASHBOARD ==========
+# ========== DASHBOARD ==========
 with col_dashboard:
-    # URL de Power BI ya incluida
+    # URL de Power BI
     POWER_BI_URL = "https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9"
-    
-    # Mostrar iframe
-    components.iframe(POWER_BI_URL, height=850, scrolling=True)
+    components.iframe(POWER_BI_URL, height=880, scrolling=True)
 
-# ========== COLUMNA DERECHA: CHATBOT ==========
+# ========== CHATBOT ==========
 with col_chat:
-    # Contenedor del chat
-    st.markdown('<div class="chat-container">', unsafe_allow_html=True)
-    
-    # Header del chat
-    st.markdown("""
-        <div class="chat-header">
-            <h3>💬 Asistente Virtual</h3>
-            <p>Consulta sobre seguridad en Santander</p>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    # Área de mensajes
-    st.markdown('<div class="chat-messages">', unsafe_allow_html=True)
-    
     # Inicializar chatbot
     if 'chatbot' not in st.session_state:
         st.session_state.chatbot = ChatbotHandler()
@@ -280,34 +233,39 @@ with col_chat:
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
     
-    # Mostrar mensaje de bienvenida si no hay mensajes
-    if len(st.session_state.chat_history) == 0:
+    # Contenedor del chat con altura fija
+    chat_container = st.container()
+    
+    with chat_container:
+        # Header
         st.markdown("""
-            <div class="welcome-message">
-                <h4>👋 ¡Bienvenido!</h4>
-                <p>Puedo ayudarte con información sobre seguridad ciudadana en Santander. 
-                Pregunta sobre estadísticas, predicciones o datos de municipios.</p>
+            <div class="chat-header">
+                <h3>💬 Asistente Virtual</h3>
+                <p>Consulta sobre seguridad en Santander</p>
             </div>
         """, unsafe_allow_html=True)
+        
+        # Mensajes
+        if len(st.session_state.chat_history) == 0:
+            st.markdown("""
+                <div class="welcome-message">
+                    <h4>👋 ¡Bienvenido!</h4>
+                    <p>Puedo ayudarte con información sobre seguridad ciudadana en Santander. 
+                    Pregunta sobre estadísticas, predicciones o datos de municipios.</p>
+                </div>
+            """, unsafe_allow_html=True)
+        
+        # Mostrar historial
+        for message in st.session_state.chat_history:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
     
-    # Mostrar mensajes del chat
-    for message in st.session_state.chat_history:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Input del chat (siempre visible abajo)
+    # Input (fuera del container para que esté siempre visible)
     if user_input := st.chat_input("Escribe tu consulta aquí..."):
-        # Agregar mensaje del usuario
         st.session_state.chat_history.append({"role": "user", "content": user_input})
         
-        # Generar respuesta
         with st.spinner(""):
             response = st.session_state.chatbot.get_response(user_input)
             st.session_state.chat_history.append({"role": "assistant", "content": response})
         
-        # Recargar para mostrar nuevos mensajes
         st.rerun()
-    
-    st.markdown('</div>', unsafe_allow_html=True)
