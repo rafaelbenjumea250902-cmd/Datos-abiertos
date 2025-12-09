@@ -140,13 +140,28 @@ st.markdown("""
     
     /* Eliminar espacio entre header y dashboard */
     [data-testid="stHorizontalBlock"] {
-        margin-top: -8rem !important;
+        margin-top: -15rem !important;
         padding-top: 0 !important;
     }
     
     [data-testid="stVerticalBlock"] {
         gap: 0 !important;
         padding: 0 !important;
+    }
+    
+    /* Forzar columnas pegadas */
+    .element-container {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
+    /* DIAGNÓSTICO: fondo rojo para ver el espacio */
+    .main {
+        background: #ffcccc !important;
+    }
+    
+    [data-testid="stHorizontalBlock"] {
+        background: #ccffcc !important;
     }
     
     .dashboard-container {
