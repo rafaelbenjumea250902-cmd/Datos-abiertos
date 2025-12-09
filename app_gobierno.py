@@ -46,17 +46,15 @@ st.markdown("""
     .header-content {
         max-width: 100%;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
+        display: flex;
         align-items: center;
-        gap: 2rem;
+        justify-content: space-between;
     }
     
     .logo-section {
         display: flex;
         align-items: center;
         gap: 1rem;
-        justify-self: start;
     }
     
     .logo-section img {
@@ -86,11 +84,10 @@ st.markdown("""
         display: flex;
         gap: 2rem;
         align-items: center;
-        justify-self: center;
     }
     
     .nav-cta-container {
-        justify-self: end;
+        display: inline-block;
     }
     
     .nav-link {
@@ -147,10 +144,8 @@ st.markdown("""
                 <a class="nav-link" href="#estadisticas">Estadísticas</a>
                 <a class="nav-link" href="#portal-datos">Portal de Datos</a>
                 <a class="nav-link" href="#rutas">Rutas de Atención</a>
-            </nav>
-            <div class="nav-cta-container">
                 <a class="nav-cta" href="#opinion">Cuéntanos tu Opinión</a>
-            </div>
+            </nav>
         </div>
     </div>
 """, unsafe_allow_html=True)
