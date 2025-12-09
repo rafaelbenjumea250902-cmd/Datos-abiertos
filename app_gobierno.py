@@ -36,40 +36,58 @@ st.markdown("""
 
 .header-nav {
     background: white;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 2rem 2rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
+}
+
+.logo-container {
+    margin-bottom: 1.5rem;
+}
+
+.logo-container img {
+    height: 80px;
+    width: auto;
+}
+
+.logo-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+    letter-spacing: 0.5px;
 }
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     align-items: center;
+    justify-content: center;
+    padding-bottom: 1rem;
 }
 
 .nav-link {
-    color: #4b5563;
+    color: #666;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
+    font-weight: 400;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
     cursor: pointer;
     border-bottom: 2px solid transparent;
     transition: all 0.2s;
+    letter-spacing: 0.5px;
 }
 
 .nav-link:hover {
-    color: #003d82;
-    border-bottom: 2px solid #003d82;
+    color: #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
 }
 
 .nav-link.active {
-    color: #003d82;
-    border-bottom: 2px solid #003d82;
+    color: #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
 }
 
 .content-section {
@@ -149,18 +167,21 @@ iframe {
 </style>
 """, unsafe_allow_html=True)
 
-col1, col2 = st.columns([1, 3])
+st.markdown("""
+<div class="header-nav">
+    <div class="logo-container">
+        <img src="app/static/logo-santander.png" alt="Gobernación de Santander">
+        <div class="logo-title">GOBERNACIÓN DE SANTANDER<br>República de Colombia</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-with col1:
-    st.markdown('<div style="font-family: Montserrat; font-weight: 700; color: #003d82; font-size: 1.2rem; padding: 1rem 2rem;">Observatorio</div>', unsafe_allow_html=True)
-
-with col2:
-    cols = st.columns(5)
-    pages = ['Inicio', 'Estadísticas', 'Portal de Datos', 'Rutas de Atención', 'Cuéntanos tu Opinión']
-    for i, page in enumerate(pages):
-        if cols[i].button(page, key=f"nav_{page}", use_container_width=True):
-            st.session_state.page = page
-            st.rerun()
+cols = st.columns(5)
+pages = ['Inicio', 'Estadísticas', 'Portal de Datos', 'Rutas de Atención', 'Cuéntanos tu Opinión']
+for i, page in enumerate(pages):
+    if cols[i].button(page, key=f"nav_{page}", use_container_width=True):
+        st.session_state.page = page
+        st.rerun()
 
 if st.session_state.page == 'Inicio':
     st.markdown('<div class="placeholder-content"><h2>Bienvenido al Observatorio de Seguridad</h2><p>Selecciona una sección del menú</p></div>', unsafe_allow_html=True)
