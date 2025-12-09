@@ -1,244 +1,228 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
-st.set_page_config(
-    page_title="Observatorio de Seguridad - Santander",
-    page_icon="🏛️",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
+st.set_page_config(page_title="Observatorio de Seguridad", page_icon="🏛️", layout="wide")
 
-st.markdown("""
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
-    
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    #MainMenu, footer, header, .stDeployButton { 
-        visibility: hidden; 
-    }
-    
-    .main {
-        background: #ffffff;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    .block-container {
-        padding: 0 !important;
-        margin: 0 !important;
-        max-width: 100% !important;
-    }
-    
-    .header-container {
-        background: white;
-        padding: 1rem 2rem;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        border-bottom: 1px solid #e5e7eb;
-    }
-    
-    .header-content {
-        max-width: 100%;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 2rem;
-    }
-    
-    .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        justify-self: start;
-    }
-    
-    .logo-section img {
-        height: 50px;
-        width: auto;
-    }
-    
-    .logo-text {
-        font-family: 'Montserrat', sans-serif;
-    }
-    
-    .logo-text h1 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin: 0;
-        line-height: 1.2;
-        color: #003d82;
-    }
-    
-    .logo-text p {
-        font-size: 0.8rem;
-        margin: 0;
-        color: #6b7280;
-    }
-    
-    .nav-menu {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-        justify-self: end;
-    }
-    
-    .nav-link {
-        color: #4b5563;
-        text-decoration: none;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        font-size: 1.56rem;
-        padding: 0.5rem 0;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        border-bottom: 2px solid transparent;
-        white-space: nowrap;
-    }
-    
-    .nav-link:hover {
-        color: #003d82;
-        border-bottom: 2px solid #003d82;
-    }
-    
-    .nav-cta {
-        background: #ff6b35;
-        color: white !important;
-        padding: 1rem 2.5rem !important;
-        border-radius: 50px;
-        border: none !important;
-        font-weight: 600;
-        font-size: 1.56rem;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.3s ease;
-    }
-    
-    .nav-cta:hover {
-        background: #e55a28;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255,107,53,0.3);
-        border-bottom: none !important;
-    }
-    
-    [data-testid="column"] {
-        padding: 0 !important;
-    }
-    
-    [data-testid="stHorizontalBlock"] {
-        margin-top: -15rem !important;
-        padding-top: 0 !important;
-    }
-    
-    [data-testid="stVerticalBlock"] {
-        gap: 0 !important;
-        padding: 0 !important;
-    }
-    
-    .element-container {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-    }
-    
-    .dashboard-container {
-        width: 100%;
-        height: 1300px;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .dashboard-container iframe {
-        width: 100%;
-        height: 1300px;
-        border: none;
-        display: block;
-    }
-    
-    .chat-sidebar {
-        background: white;
-        border-left: 1px solid #e0e0e0;
-        height: 1300px;
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .chat-header {
-        background: linear-gradient(135deg, #003d82, #0056b3);
-        color: white;
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .chat-header h3 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 1rem;
-        margin: 0;
-    }
-    
-    .chat-header p {
-        font-size: 0.8rem;
-        opacity: 0.9;
-        margin: 0;
-    }
-    
-    .stChatMessage {
-        background: #f8f9fa;
-        border-radius: 12px;
-        padding: 0.875rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .stChatMessage[data-testid="user-message"] {
-        background: #e3f2fd;
-        border: 1px solid #90caf9;
-    }
-    
-    .stChatMessage p {
-        color: #1f2937 !important;
-        font-family: 'Open Sans', sans-serif;
-        line-height: 1.5;
-    }
-    </style>
-""", unsafe_allow_html=True)
+if 'page' not in st.session_state:
+    st.session_state.page = 'Inicio'
+if 'messages' not in st.session_state:
+    st.session_state.messages = []
 
 st.markdown("""
-    <div class="header-container">
-        <div class="header-content">
-            <div class="logo-section">
-                <img src="assets/logo-santander.png" alt="Gobernación de Santander">
-                <div class="logo-text">
-                    <h1>Observatorio de Seguridad</h1>
-                    <p>Gobernación de Santander</p>
-                </div>
-            </div>
-            <nav class="nav-menu">
-                <a class="nav-link" href="#inicio">Inicio</a>
-                <a class="nav-link" href="#estadisticas">Estadísticas</a>
-                <a class="nav-link" href="#portal-datos">Portal de Datos</a>
-                <a class="nav-link" href="#rutas">Rutas de Atención</a>
-                <a class="nav-cta" href="#opinion">Cuéntanos tu Opinión</a>
-            </nav>
-        </div>
-    </div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#MainMenu, footer, header, .stDeployButton {
+    visibility: hidden;
+}
+
+.main {
+    background: #ffffff;
+    padding: 0 !important;
+}
+
+.block-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+.header-nav {
+    background: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: #4b5563;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    color: #003d82;
+    border-bottom: 2px solid #003d82;
+}
+
+.nav-link.active {
+    color: #003d82;
+    border-bottom: 2px solid #003d82;
+}
+
+.content-section {
+    padding: 0;
+    margin: 0;
+}
+
+.estadisticas-container {
+    display: flex;
+    height: calc(100vh - 80px);
+    width: 100%;
+}
+
+.dashboard-panel {
+    width: 70%;
+    height: 100%;
+}
+
+.chat-panel {
+    width: 30%;
+    height: 100%;
+    border-left: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f5;
+}
+
+.chat-header {
+    background: linear-gradient(135deg, #003d82, #0056b3);
+    color: white;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message.bot {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 70%;
+    padding: 0.75rem 1rem;
+    border-radius: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.message.user .message-bubble {
+    background: #0084ff;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message.bot .message-bubble {
+    background: #e4e6eb;
+    color: #050505;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-input-area {
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+}
+
+.placeholder-content {
+    padding: 3rem 2rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.stTextInput input {
+    border-radius: 20px !important;
+    padding: 0.75rem 1rem !important;
+    border: 1px solid #ddd !important;
+}
+
+.stButton button {
+    background: #0084ff !important;
+    color: white !important;
+    border-radius: 20px !important;
+    padding: 0.5rem 2rem !important;
+    font-weight: 600 !important;
+    border: none !important;
+}
+
+iframe {
+    border: none !important;
+}
+</style>
 """, unsafe_allow_html=True)
 
-POWER_BI_URL = "https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9"
-components.iframe(POWER_BI_URL, height=1300, scrolling=False)
+col1, col2 = st.columns([1, 3])
 
-st.markdown("""
-    <div style="padding: 2rem; text-align: center;">
-        <h2>Contenido temporal</h2>
-        <p>Aquí irán las demás secciones paso por paso</p>
-    </div>
-""", unsafe_allow_html=True)
+with col1:
+    st.markdown('<div style="font-family: Montserrat; font-weight: 700; color: #003d82; font-size: 1.2rem; padding: 1rem 2rem;">Observatorio</div>', unsafe_allow_html=True)
+
+with col2:
+    cols = st.columns(5)
+    pages = ['Inicio', 'Estadísticas', 'Portal de Datos', 'Rutas de Atención', 'Cuéntanos tu Opinión']
+    for i, page in enumerate(pages):
+        if cols[i].button(page, key=f"nav_{page}", use_container_width=True):
+            st.session_state.page = page
+            st.rerun()
+
+if st.session_state.page == 'Inicio':
+    st.markdown('<div class="placeholder-content"><h2>Bienvenido al Observatorio de Seguridad</h2><p>Selecciona una sección del menú</p></div>', unsafe_allow_html=True)
+
+elif st.session_state.page == 'Estadísticas':
+    col_dash, col_chat = st.columns([70, 30], gap="small")
+    
+    with col_dash:
+        st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9", height=800, scrolling=False)
+    
+    with col_chat:
+        st.markdown('<div class="chat-header">💬 Asistente Virtual</div>', unsafe_allow_html=True)
+        
+        chat_container = st.container(height=600)
+        with chat_container:
+            for msg in st.session_state.messages:
+                role_class = "user" if msg["role"] == "user" else "bot"
+                st.markdown(f'<div class="message {role_class}"><div class="message-bubble">{msg["content"]}</div></div>', unsafe_allow_html=True)
+        
+        with st.form(key="chat_form", clear_on_submit=True):
+            user_input = st.text_input("Escribe tu mensaje...", key="user_input", label_visibility="collapsed")
+            submit = st.form_submit_button("Enviar")
+            
+            if submit and user_input:
+                st.session_state.messages.append({"role": "user", "content": user_input})
+                st.session_state.messages.append({"role": "bot", "content": "Estoy procesando tu consulta..."})
+                st.rerun()
+
+elif st.session_state.page == 'Portal de Datos':
+    st.markdown('<div class="placeholder-content"><h2>Portal de Datos</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
+
+elif st.session_state.page == 'Rutas de Atención':
+    st.markdown('<div class="placeholder-content"><h2>Rutas de Atención</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
+
+elif st.session_state.page == 'Cuéntanos tu Opinión':
+    st.markdown('<div class="placeholder-content"><h2>Cuéntanos tu Opinión</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
