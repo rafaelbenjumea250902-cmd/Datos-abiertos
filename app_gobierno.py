@@ -159,7 +159,7 @@ iframe {
 
 st.markdown('<div class="header-section"><div class="logo-container-center">', unsafe_allow_html=True)
 
-st.image("assets/logo-santander.png", use_container_width=True)
+st.image("assets/logo-santander.png", use_column_width=True)
 
 st.markdown('</div></div>', unsafe_allow_html=True)
 
