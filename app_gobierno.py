@@ -95,7 +95,7 @@ st.markdown("""
         text-decoration: none;
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
-        font-size: 1.3rem;
+        font-size: 1.56rem;
         padding: 0.5rem 0;
         transition: all 0.2s ease;
         cursor: pointer;
@@ -111,11 +111,11 @@ st.markdown("""
     .nav-cta {
         background: #ff6b35;
         color: white !important;
-        padding: 0.85rem 2.2rem !important;
+        padding: 1rem 2.5rem !important;
         border-radius: 50px;
         border: none !important;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: 1.56rem;
         text-decoration: none;
         display: inline-block;
         transition: all 0.3s ease;
