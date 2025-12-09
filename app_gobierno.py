@@ -182,7 +182,7 @@ elif st.session_state.page == 'Estadísticas':
     col_dash, col_chat = st.columns([70, 30], gap="small")
     
     with col_dash:
-        st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9", height=1250, scrolling=False)
+        st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9", height=1625, scrolling=False)
     
     with col_chat:
         LUPITA_AVATAR = "assets/lupita.png"
@@ -204,7 +204,7 @@ elif st.session_state.page == 'Estadísticas':
                 st.session_state.chat_history = []
                 st.rerun()
         
-        chat_container = st.container(height=1073)
+        chat_container = st.container(height=1395)
         
         with chat_container:
             if len(st.session_state.chat_history) == 0:
