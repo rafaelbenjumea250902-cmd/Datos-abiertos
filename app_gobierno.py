@@ -36,7 +36,7 @@ st.markdown("""
 
 .header-section {
     background: white;
-    padding: 2rem 2rem 0;
+    padding: 1rem 2rem 0.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     border-bottom: 1px solid #e5e7eb;
 }
@@ -46,16 +46,6 @@ st.markdown("""
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-}
-
-.logo-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.5px;
     text-align: center;
 }
 
@@ -169,8 +159,7 @@ iframe {
 
 st.markdown('<div class="header-section"><div class="logo-container-center">', unsafe_allow_html=True)
 
-st.image("assets/logo-santander.png", width=200)
-st.markdown('<div class="logo-title">GOBERNACIÓN DE SANTANDER<br>República de Colombia</div>', unsafe_allow_html=True)
+st.image("assets/logo-santander.png", use_container_width=True)
 
 st.markdown('</div></div>', unsafe_allow_html=True)
 
