@@ -46,15 +46,17 @@ st.markdown("""
     .header-content {
         max-width: 100%;
         margin: 0 auto;
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         align-items: center;
-        justify-content: space-between;
+        gap: 2rem;
     }
     
     .logo-section {
         display: flex;
         align-items: center;
         gap: 1rem;
+        justify-self: start;
     }
     
     .logo-section img {
@@ -84,6 +86,7 @@ st.markdown("""
         display: flex;
         gap: 2rem;
         align-items: center;
+        justify-self: end;
     }
     
     .nav-cta-container {
