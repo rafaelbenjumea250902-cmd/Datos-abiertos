@@ -48,17 +48,19 @@ st.markdown("""
     }
     
     .header-content {
-        max-width: 1400px;
+        max-width: 100%;
         margin: 0 auto;
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        justify-content: space-between;
+        gap: 2rem;
     }
     
     .logo-section {
         display: flex;
         align-items: center;
         gap: 1rem;
+        justify-self: start;
     }
     
     .logo-section img {
@@ -88,6 +90,11 @@ st.markdown("""
         display: flex;
         gap: 2rem;
         align-items: center;
+        justify-self: center;
+    }
+    
+    .nav-cta-container {
+        justify-self: end;
     }
     
     .nav-link {
@@ -100,6 +107,7 @@ st.markdown("""
         transition: all 0.2s ease;
         cursor: pointer;
         border-bottom: 2px solid transparent;
+        white-space: nowrap;
     }
     
     .nav-link:hover {
@@ -114,12 +122,16 @@ st.markdown("""
         border-radius: 50px;
         border: none !important;
         font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
     }
     
     .nav-cta:hover {
         background: #e55a28;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+        border-bottom: none !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -128,6 +140,7 @@ st.markdown("""
 st.markdown("""
     <div class="header-container">
         <div class="header-content">
+            <!-- Logo a la izquierda -->
             <div class="logo-section">
                 <img src="assets/logo-santander.png" alt="Gobernación de Santander">
                 <div class="logo-text">
@@ -135,13 +148,19 @@ st.markdown("""
                     <p>Gobernación de Santander</p>
                 </div>
             </div>
+            
+            <!-- Menú al centro -->
             <nav class="nav-menu">
                 <a class="nav-link" href="#inicio">Inicio</a>
                 <a class="nav-link" href="#estadisticas">Estadísticas</a>
                 <a class="nav-link" href="#portal-datos">Portal de Datos</a>
                 <a class="nav-link" href="#rutas">Rutas de Atención</a>
-                <a class="nav-link nav-cta" href="#opinion">Cuéntanos tu Opinión</a>
             </nav>
+            
+            <!-- Botón a la derecha -->
+            <div class="nav-cta-container">
+                <a class="nav-cta" href="#opinion">Cuéntanos tu Opinión</a>
+            </div>
         </div>
     </div>
 """, unsafe_allow_html=True)
