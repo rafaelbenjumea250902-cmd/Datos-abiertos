@@ -170,7 +170,7 @@ iframe {
 st.markdown("""
 <div class="header-nav">
     <div class="logo-container">
-        <img src="app/static/logo-santander.png" alt="Gobernación de Santander">
+        <img src="assets/logo-santander.png" alt="Gobernación de Santander">
         <div class="logo-title">GOBERNACIÓN DE SANTANDER<br>República de Colombia</div>
     </div>
 </div>
