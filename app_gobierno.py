@@ -34,7 +34,7 @@ st.markdown("""
     max-width: 100% !important;
 }
 
-.header-nav {
+.header-section {
     background: white;
     padding: 2rem 2rem 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -42,52 +42,13 @@ st.markdown("""
     text-align: center;
 }
 
-.logo-container {
-    margin-bottom: 1.5rem;
-}
-
-.logo-container img {
-    height: 80px;
-    width: auto;
-}
-
 .logo-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     color: #666;
     margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
     letter-spacing: 0.5px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 3rem;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 1rem;
-}
-
-.nav-link {
-    color: #666;
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 0.95rem;
-    padding: 0.5rem 0;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
-}
-
-.nav-link:hover {
-    color: #1a1a1a;
-    border-bottom: 2px solid #1a1a1a;
-}
-
-.nav-link.active {
-    color: #1a1a1a;
-    border-bottom: 2px solid #1a1a1a;
 }
 
 .content-section {
@@ -161,20 +122,39 @@ st.markdown("""
     line-height: 1.5;
 }
 
+.stButton button {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 0.95rem !important;
+    color: #666 !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    border-radius: 0 !important;
+    padding: 0.5rem 1rem !important;
+    letter-spacing: 0.5px !important;
+}
+
+.stButton button:hover {
+    color: #1a1a1a !important;
+    border-bottom: 2px solid #1a1a1a !important;
+    background: transparent !important;
+}
+
 iframe {
     border: none !important;
 }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<div class="header-nav">
-    <div class="logo-container">
-        <img src="assets/logo-santander.png" alt="Gobernación de Santander">
-        <div class="logo-title">GOBERNACIÓN DE SANTANDER<br>República de Colombia</div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+st.markdown('<div class="header-section">', unsafe_allow_html=True)
+
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("assets/logo-santander.png", width=200)
+    st.markdown('<div class="logo-title">GOBERNACIÓN DE SANTANDER<br>República de Colombia</div>', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
 
 cols = st.columns(5)
 pages = ['Inicio', 'Estadísticas', 'Portal de Datos', 'Rutas de Atención', 'Cuéntanos tu Opinión']
