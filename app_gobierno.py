@@ -138,6 +138,17 @@ st.markdown("""
         padding: 0 !important;
     }
     
+    /* Eliminar espacio entre header y dashboard */
+    [data-testid="stHorizontalBlock"] {
+        margin-top: -3rem !important;
+        padding-top: 0 !important;
+    }
+    
+    [data-testid="stVerticalBlock"] {
+        gap: 0 !important;
+        padding: 0 !important;
+    }
+    
     .dashboard-container {
         width: 100%;
         height: 1300px;
