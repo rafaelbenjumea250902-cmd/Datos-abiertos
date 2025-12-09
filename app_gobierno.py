@@ -64,21 +64,15 @@ st.markdown("""
 .content-section {
     padding: 0;
     margin: 0;
-}
-
-.estadisticas-container {
-    display: flex;
     min-height: calc(100vh - 200px);
-    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.estadisticas-wrapper {
-    display: flex;
+.estadisticas-container {
     width: 100%;
     max-width: 100%;
-    height: 800px;
 }
 
 .dashboard-panel {
@@ -183,7 +177,7 @@ if st.session_state.page == 'Inicio':
     st.markdown('<div class="placeholder-content"><h2>Bienvenido al Observatorio de Seguridad</h2><p>Selecciona una sección del menú</p></div>', unsafe_allow_html=True)
 
 elif st.session_state.page == 'Estadísticas':
-    st.markdown('<div class="estadisticas-container">', unsafe_allow_html=True)
+    st.markdown('<div style="padding-top: 10vh;"></div>', unsafe_allow_html=True)
     
     col_dash, col_chat = st.columns([70, 30], gap="small")
     
@@ -244,8 +238,6 @@ elif st.session_state.page == 'Estadísticas':
                 st.session_state.chat_history.append({"role": "assistant", "content": response})
             
             st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.page == 'Portal de Datos':
     st.markdown('<div class="placeholder-content"><h2>Portal de Datos</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
