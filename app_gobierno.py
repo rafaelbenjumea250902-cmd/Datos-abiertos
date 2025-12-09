@@ -49,6 +49,14 @@ st.markdown("""
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
     letter-spacing: 0.5px;
+    text-align: center;
+}
+
+[data-testid="column"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .content-section {
@@ -149,8 +157,8 @@ iframe {
 
 st.markdown('<div class="header-section">', unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
+col_center = st.columns([1, 2, 1])[1]
+with col_center:
     st.image("assets/logo-santander.png", width=200)
     st.markdown('<div class="logo-title">GOBERNACIÓN DE SANTANDER<br>República de Colombia</div>', unsafe_allow_html=True)
 
