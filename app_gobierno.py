@@ -177,7 +177,7 @@ if st.session_state.page == 'Inicio':
     st.markdown('<div class="placeholder-content"><h2>Bienvenido al Observatorio de Seguridad</h2><p>Selecciona una sección del menú</p></div>', unsafe_allow_html=True)
 
 elif st.session_state.page == 'Estadísticas':
-    st.markdown('<div style="padding-top: 10vh;"></div>', unsafe_allow_html=True)
+    st.markdown('<div style="padding-top: 20vh;"></div>', unsafe_allow_html=True)
     
     col_dash, col_chat = st.columns([70, 30], gap="small")
     
