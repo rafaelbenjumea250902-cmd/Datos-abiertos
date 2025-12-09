@@ -1,11 +1,14 @@
 import streamlit as st
+from chatbot.llm_handler import ChatbotHandler
 
 st.set_page_config(page_title="Observatorio de Seguridad", page_icon="🏛️", layout="wide")
 
 if 'page' not in st.session_state:
     st.session_state.page = 'Inicio'
-if 'messages' not in st.session_state:
-    st.session_state.messages = []
+if 'chatbot' not in st.session_state:
+    st.session_state.chatbot = ChatbotHandler()
+if 'chat_history' not in st.session_state:
+    st.session_state.chat_history = []
 
 st.markdown("""
 <style>
@@ -91,7 +94,7 @@ st.markdown("""
     border-left: 1px solid #e0e0e0;
     display: flex;
     flex-direction: column;
-    background: #f5f5f5;
+    background: white;
 }
 
 .chat-header {
@@ -100,55 +103,20 @@ st.markdown("""
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-}
-
-.chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.message {
-    display: flex;
-    margin-bottom: 0.5rem;
+.chat-header h3 {
+    font-size: 1rem;
+    margin: 0;
 }
 
-.message.user {
-    justify-content: flex-end;
-}
-
-.message.bot {
-    justify-content: flex-start;
-}
-
-.message-bubble {
-    max-width: 70%;
-    padding: 0.75rem 1rem;
-    border-radius: 18px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.4;
-}
-
-.message.user .message-bubble {
-    background: #0084ff;
-    color: white;
-    border-bottom-right-radius: 4px;
-}
-
-.message.bot .message-bubble {
-    background: #e4e6eb;
-    color: #050505;
-    border-bottom-left-radius: 4px;
-}
-
-.chat-input-area {
-    padding: 1rem;
-    background: white;
-    border-top: 1px solid #e0e0e0;
+.chat-header p {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin: 0;
 }
 
 .placeholder-content {
@@ -157,19 +125,22 @@ st.markdown("""
     font-family: 'Montserrat', sans-serif;
 }
 
-.stTextInput input {
-    border-radius: 20px !important;
-    padding: 0.75rem 1rem !important;
-    border: 1px solid #ddd !important;
+.stChatMessage {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 0.875rem;
+    margin-bottom: 0.5rem;
 }
 
-.stButton button {
-    background: #0084ff !important;
-    color: white !important;
-    border-radius: 20px !important;
-    padding: 0.5rem 2rem !important;
-    font-weight: 600 !important;
-    border: none !important;
+.stChatMessage[data-testid="user-message"] {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+}
+
+.stChatMessage p {
+    color: #1f2937 !important;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.5;
 }
 
 iframe {
@@ -201,22 +172,59 @@ elif st.session_state.page == 'Estadísticas':
         st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9", height=800, scrolling=False)
     
     with col_chat:
-        st.markdown('<div class="chat-header">💬 Asistente Virtual</div>', unsafe_allow_html=True)
+        LUPITA_AVATAR = "assets/lupita.png"
+        USER_AVATAR = "assets/user-avatar.png"
+        
+        col_title, col_reset = st.columns([5, 1])
+        with col_title:
+            st.markdown("""
+                <div class="chat-header">
+                    <div>
+                        <h3>💬 Lupita - Asistente Virtual</h3>
+                        <p>Observatorio de Seguridad</p>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
+        
+        with col_reset:
+            if st.button("🔄", help="Reiniciar conversación", key="reset_chat"):
+                st.session_state.chat_history = []
+                st.rerun()
         
         chat_container = st.container(height=600)
-        with chat_container:
-            for msg in st.session_state.messages:
-                role_class = "user" if msg["role"] == "user" else "bot"
-                st.markdown(f'<div class="message {role_class}"><div class="message-bubble">{msg["content"]}</div></div>', unsafe_allow_html=True)
         
-        with st.form(key="chat_form", clear_on_submit=True):
-            user_input = st.text_input("Escribe tu mensaje...", key="user_input", label_visibility="collapsed")
-            submit = st.form_submit_button("Enviar")
+        with chat_container:
+            if len(st.session_state.chat_history) == 0:
+                st.markdown("""
+                    <div style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); 
+                         border: 1px solid #bae6fd; border-radius: 12px; padding: 1.25rem; 
+                         text-align: center; margin: 1rem;">
+                        <h4 style="color: #0c4a6e; font-size: 0.95rem; font-weight: 600; margin: 0 0 0.5rem 0;">
+                            👋 Hola, soy Lupita
+                        </h4>
+                        <p style="color: #075985; font-size: 0.8rem; margin: 0; line-height: 1.5;">
+                            Tu asistente virtual para el Observatorio de Seguridad de Santander. 
+                            Pregúntame sobre estadísticas, zonas, tipos de delitos y predicciones de riesgo.
+                        </p>
+                    </div>
+                """, unsafe_allow_html=True)
             
-            if submit and user_input:
-                st.session_state.messages.append({"role": "user", "content": user_input})
-                st.session_state.messages.append({"role": "bot", "content": "Estoy procesando tu consulta..."})
-                st.rerun()
+            for message in st.session_state.chat_history:
+                if message["role"] == "assistant":
+                    with st.chat_message(message["role"], avatar=LUPITA_AVATAR):
+                        st.markdown(message["content"])
+                else:
+                    with st.chat_message(message["role"], avatar=USER_AVATAR):
+                        st.markdown(message["content"])
+        
+        if user_input := st.chat_input("Escribe tu consulta aquí...", key="chat_input"):
+            st.session_state.chat_history.append({"role": "user", "content": user_input})
+            
+            with st.spinner(""):
+                response = st.session_state.chatbot.get_response(user_input)
+                st.session_state.chat_history.append({"role": "assistant", "content": response})
+            
+            st.rerun()
 
 elif st.session_state.page == 'Portal de Datos':
     st.markdown('<div class="placeholder-content"><h2>Portal de Datos</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
