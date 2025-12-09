@@ -140,7 +140,7 @@ st.markdown("""
     
     /* Eliminar espacio entre header y dashboard */
     [data-testid="stHorizontalBlock"] {
-        margin-top: -3rem !important;
+        margin-top: -8rem !important;
         padding-top: 0 !important;
     }
     
