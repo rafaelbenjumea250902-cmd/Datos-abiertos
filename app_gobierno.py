@@ -87,6 +87,7 @@ st.markdown("""
     display: flex;
     flex-direction: column;
     background: white;
+    border-radius: 11px;
 }
 
 .chat-header {
@@ -98,6 +99,7 @@ st.markdown("""
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 11px 11px 0 0;
 }
 
 .chat-header h3 {
@@ -119,7 +121,7 @@ st.markdown("""
 
 .stChatMessage {
     background: #f8f9fa;
-    border-radius: 12px;
+    border-radius: 11px;
     padding: 0.875rem;
     margin-bottom: 0.5rem;
 }
@@ -127,6 +129,7 @@ st.markdown("""
 .stChatMessage[data-testid="user-message"] {
     background: #e3f2fd;
     border: 1px solid #90caf9;
+    border-radius: 11px;
 }
 
 .stChatMessage p {
