@@ -100,8 +100,11 @@ st.markdown("""
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 11px 11px 0 0;
+    border-radius: 8px 8px 0 0;
     border-top: none;
+    margin: 0;
+    position: relative;
+    top: 0;
 }
 
 .chat-header h3 {
@@ -200,6 +203,8 @@ elif st.session_state.page == 'Estadísticas':
                 overflow: hidden;
                 height: 100%;
                 box-sizing: border-box;
+                padding: 0;
+                margin: 0;
             ">
         ''', unsafe_allow_html=True)
         
