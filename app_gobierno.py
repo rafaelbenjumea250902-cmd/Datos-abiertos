@@ -91,8 +91,8 @@ st.markdown("""
 }
 
 .chat-header {
-    background: linear-gradient(135deg, #003d82, #0056b3);
-    color: white;
+    background: white;
+    color: #003d82;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -100,17 +100,19 @@ st.markdown("""
     justify-content: space-between;
     align-items: center;
     border-radius: 11px 11px 0 0;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .chat-header h3 {
     font-size: 1rem;
     margin: 0;
+    color: #003d82;
 }
 
 .chat-header p {
     font-size: 0.8rem;
-    opacity: 0.9;
     margin: 0;
+    color: #666;
 }
 
 .placeholder-content {
@@ -194,7 +196,7 @@ elif st.session_state.page == 'Estadísticas':
         st.markdown("""
             <div class="chat-header">
                 <div>
-                    <h3>💬 Lupita - Asistente Virtual</h3>
+                    <h3>Lupita - Asistente Virtual</h3>
                     <p>Observatorio de Seguridad</p>
                 </div>
             </div>
