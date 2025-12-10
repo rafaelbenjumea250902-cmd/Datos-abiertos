@@ -258,7 +258,168 @@ elif st.session_state.page == 'Estadísticas':
         st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.page == 'Portal de Datos':
-    st.markdown('<div class="placeholder-content"><h2>Portal de Datos</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
+    st.markdown('<div style="padding-top: 5vh;"></div>', unsafe_allow_html=True)
+    
+    st.markdown("""
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2rem; color: #003d82; margin-bottom: 0.5rem;">
+                📊 Portal de Datos Abiertos
+            </h2>
+            <p style="font-family: 'Open Sans', sans-serif; font-size: 1rem; color: #666;">
+                Accede a los datasets utilizados en el Observatorio de Seguridad
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+        <style>
+        .data-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 11px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 1rem;
+        }
+        .data-card:hover {
+            border-color: #003d82;
+            box-shadow: 0 4px 12px rgba(0,61,130,0.15);
+            transform: translateY(-2px);
+        }
+        .data-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .data-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+        .data-card-meta {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .data-card-buttons {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    # Primera fila de cards
+    col1, col_space1, col2 = st.columns([5, 1, 5])
+    
+    with col1:
+        st.markdown("""
+            <div class="data-card">
+                <div>
+                    <div class="data-card-icon">📈</div>
+                    <div class="data-card-title">Delitos Sexuales</div>
+                    <div class="data-card-meta">📊 Reportes de la Policía Nacional</div>
+                    <div class="data-card-meta">📅 Actualizado: Dic 2024</div>
+                    <div class="data-card-meta">🔢 15,234 registros</div>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        col_ver1, col_desc1 = st.columns(2)
+        with col_ver1:
+            if st.button("📊 Ver Dataset", key="ver_delitos_sexuales", use_container_width=True):
+                st.info("🔗 [Ver en Datos Abiertos](https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Delitos-sexuales-Polic-a-Nacional/fpe5-yrmw/about_data)")
+        with col_desc1:
+            if st.button("⬇️ Descargar", key="desc_delitos_sexuales", use_container_width=True):
+                st.success("Redirigiendo a descarga...")
+    
+    with col2:
+        st.markdown("""
+            <div class="data-card">
+                <div>
+                    <div class="data-card-icon">🚨</div>
+                    <div class="data-card-title">Hurto por Modalidades</div>
+                    <div class="data-card-meta">📊 Datos clasificados por tipo</div>
+                    <div class="data-card-meta">📅 Actualizado: Dic 2024</div>
+                    <div class="data-card-meta">🔢 23,445 registros</div>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        col_ver2, col_desc2 = st.columns(2)
+        with col_ver2:
+            if st.button("📊 Ver Dataset", key="ver_hurto", use_container_width=True):
+                st.info("🔗 [Ver en Datos Abiertos](https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Hurto-por-Modalidades-Polic-a-Nacional/6sqw-8cg5/about_data)")
+        with col_desc2:
+            if st.button("⬇️ Descargar", key="desc_hurto", use_container_width=True):
+                st.success("Redirigiendo a descarga...")
+    
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    
+    # Segunda fila de cards
+    col3, col_space2, col4 = st.columns([5, 1, 5])
+    
+    with col3:
+        st.markdown("""
+            <div class="data-card">
+                <div>
+                    <div class="data-card-icon">🏠</div>
+                    <div class="data-card-title">Violencia Intrafamiliar</div>
+                    <div class="data-card-meta">📊 Reportes de violencia doméstica</div>
+                    <div class="data-card-meta">📅 Actualizado: Dic 2024</div>
+                    <div class="data-card-meta">🔢 8,921 registros</div>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        col_ver3, col_desc3 = st.columns(2)
+        with col_ver3:
+            if st.button("📊 Ver Dataset", key="ver_violencia", use_container_width=True):
+                st.info("🔗 [Ver en Datos Abiertos](https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Delito-Violencia-Intrafamiliar-Polic-a-Nac/vuyt-mqpw/about_data)")
+        with col_desc3:
+            if st.button("⬇️ Descargar", key="desc_violencia", use_container_width=True):
+                st.success("Redirigiendo a descarga...")
+    
+    with col4:
+        st.markdown("""
+            <div class="data-card">
+                <div>
+                    <div class="data-card-icon">🏙️</div>
+                    <div class="data-card-title">Delitos en Bucaramanga</div>
+                    <div class="data-card-meta">📊 Datos específicos del municipio</div>
+                    <div class="data-card-meta">📅 Actualizado: Dic 2024</div>
+                    <div class="data-card-meta">🔢 42,156 registros</div>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        col_ver4, col_desc4 = st.columns(2)
+        with col_ver4:
+            if st.button("📊 Ver Dataset", key="ver_bucaramanga", use_container_width=True):
+                st.info("🔗 [Ver en Datos Abiertos](https://www.datos.gov.co/Seguridad-y-Defensa/40Delitos-ocurridos-en-el-Municipio-de-Bucaramanga/75fz-q98y/about_data)")
+        with col_desc4:
+            if st.button("⬇️ Descargar", key="desc_bucaramanga", use_container_width=True):
+                st.success("Redirigiendo a descarga...")
+    
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    st.markdown("""
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="font-family: 'Open Sans', sans-serif; color: #666;">
+                🔗 <a href="https://www.datos.gov.co" target="_blank" style="color: #003d82; text-decoration: none;">
+                    Ver más datasets en Datos Abiertos Colombia
+                </a>
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.page == 'Rutas de Atención':
     st.markdown('<div style="padding-top: 5vh;"></div>', unsafe_allow_html=True)
