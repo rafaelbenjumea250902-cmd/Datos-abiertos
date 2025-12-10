@@ -83,7 +83,7 @@ st.markdown("""
 .chat-panel {
     width: 30%;
     height: 100%;
-    border-left: 1px solid #e0e0e0;
+    border: 2px solid #003d82;
     display: flex;
     flex-direction: column;
     background: white;
