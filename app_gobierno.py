@@ -171,7 +171,10 @@ iframe {
 
 st.markdown('<div class="header-section"><div class="logo-container-center">', unsafe_allow_html=True)
 
-st.image("assets/logo-santander.png", width=600)
+try:
+    st.image("assets/logo-santander.png", width=600)
+except:
+    st.markdown('<h2 style="text-align: center; color: #003d82;">OBSERVATORIO DE SEGURIDAD DE SANTANDER</h2>', unsafe_allow_html=True)
 
 st.markdown('</div></div>', unsafe_allow_html=True)
 
