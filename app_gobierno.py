@@ -101,10 +101,8 @@ st.markdown("""
     justify-content: center;
     align-items: center;
     border-radius: 8px 8px 0 0;
-    border-top: none;
-    margin: 0;
+    margin: -3px -3px 0 -3px;
     position: relative;
-    top: 0;
 }
 
 .chat-header h3 {
