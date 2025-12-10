@@ -191,21 +191,14 @@ elif st.session_state.page == 'Estadísticas':
         LUPITA_AVATAR = "assets/lupita.png"
         USER_AVATAR = "assets/user-avatar.png"
         
-        col_title, col_reset = st.columns([5, 1])
-        with col_title:
-            st.markdown("""
-                <div class="chat-header">
-                    <div>
-                        <h3>💬 Lupita - Asistente Virtual</h3>
-                        <p>Observatorio de Seguridad</p>
-                    </div>
+        st.markdown("""
+            <div class="chat-header">
+                <div>
+                    <h3>💬 Lupita - Asistente Virtual</h3>
+                    <p>Observatorio de Seguridad</p>
                 </div>
-            """, unsafe_allow_html=True)
-        
-        with col_reset:
-            if st.button("🔄", help="Reiniciar conversación", key="reset_chat"):
-                st.session_state.chat_history = []
-                st.rerun()
+            </div>
+        """, unsafe_allow_html=True)
         
         chat_container = st.container(height=1186)
         
