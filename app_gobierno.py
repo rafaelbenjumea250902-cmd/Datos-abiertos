@@ -92,8 +92,8 @@ st.markdown("""
 }
 
 .chat-header {
-    background: white;
-    color: #003d82;
+    background: linear-gradient(135deg, #003d82, #0056b3);
+    color: white;
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -101,19 +101,19 @@ st.markdown("""
     justify-content: space-between;
     align-items: center;
     border-radius: 11px 11px 0 0;
-    border-bottom: 1px solid #e0e0e0;
 }
 
 .chat-header h3 {
     font-size: 1rem;
     margin: 0;
-    color: #003d82;
+    color: white;
 }
 
 .chat-header p {
     font-size: 0.8rem;
     margin: 0;
-    color: #666;
+    color: white;
+    opacity: 0.9;
 }
 
 .placeholder-content {
