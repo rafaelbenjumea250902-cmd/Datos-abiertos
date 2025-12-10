@@ -83,11 +83,12 @@ st.markdown("""
 .chat-panel {
     width: 30%;
     height: 100%;
-    border: 2px solid #003d82;
+    border: 3px solid #003d82 !important;
     display: flex;
     flex-direction: column;
     background: white;
     border-radius: 11px;
+    box-shadow: 0 0 0 3px #003d82;
 }
 
 .chat-header {
@@ -190,6 +191,8 @@ elif st.session_state.page == 'Estadísticas':
         st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9", height=1381, scrolling=False)
     
     with col_chat:
+        st.markdown('<div style="border: 3px solid #003d82; border-radius: 11px; overflow: hidden;">', unsafe_allow_html=True)
+        
         LUPITA_AVATAR = "assets/lupita.png"
         USER_AVATAR = "assets/user-avatar.png"
         
@@ -236,6 +239,8 @@ elif st.session_state.page == 'Estadísticas':
                 st.session_state.chat_history.append({"role": "assistant", "content": response})
             
             st.rerun()
+        
+        st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.page == 'Portal de Datos':
     st.markdown('<div class="placeholder-content"><h2>Portal de Datos</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
