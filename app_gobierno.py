@@ -263,7 +263,7 @@ elif st.session_state.page == 'Portal de Datos':
     st.markdown("""
         <div style="text-align: center; margin-bottom: 3rem;">
             <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2rem; color: #003d82; margin-bottom: 0.5rem;">
-                📊 Portal de Datos Abiertos
+                Portal de Datos Abiertos
             </h2>
             <p style="font-family: 'Open Sans', sans-serif; font-size: 1rem; color: #666;">
                 Accede a los datasets utilizados en el Observatorio de Seguridad
@@ -297,7 +297,7 @@ elif st.session_state.page == 'Portal de Datos':
         }
         .data-card-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: #1a1a1a;
             margin-bottom: 1rem;
@@ -318,17 +318,16 @@ elif st.session_state.page == 'Portal de Datos':
     """, unsafe_allow_html=True)
     
     # Primera fila de cards
-    col1, col_space1, col2 = st.columns([5, 1, 5])
+    col_left, col1, col_space1, col2, col_right = st.columns([0.1, 5, 1, 5, 0.1])
     
     with col1:
         st.markdown("""
             <div class="data-card">
                 <div>
-                    <div class="data-card-icon">📈</div>
                     <div class="data-card-title">Delitos Sexuales</div>
-                    <div class="data-card-meta">📊 Reportes de la Policía Nacional</div>
-                    <div class="data-card-meta">📅 Actualizado: Dic 2024</div>
-                    <div class="data-card-meta">🔢 15,234 registros</div>
+                    <div class="data-card-meta">Reportes de la Policía Nacional</div>
+                    <div class="data-card-meta">Actualizado: Dic 2024</div>
+                    <div class="data-card-meta">15,234 registros</div>
                 </div>
             </div>
         """, unsafe_allow_html=True)
@@ -344,11 +343,10 @@ elif st.session_state.page == 'Portal de Datos':
         st.markdown("""
             <div class="data-card">
                 <div>
-                    <div class="data-card-icon">🚨</div>
                     <div class="data-card-title">Hurto por Modalidades</div>
-                    <div class="data-card-meta">📊 Datos clasificados por tipo</div>
-                    <div class="data-card-meta">📅 Actualizado: Dic 2024</div>
-                    <div class="data-card-meta">🔢 23,445 registros</div>
+                    <div class="data-card-meta">Datos clasificados por tipo</div>
+                    <div class="data-card-meta">Actualizado: Dic 2024</div>
+                    <div class="data-card-meta">23,445 registros</div>
                 </div>
             </div>
         """, unsafe_allow_html=True)
@@ -363,17 +361,16 @@ elif st.session_state.page == 'Portal de Datos':
     st.markdown("<br><br><br>", unsafe_allow_html=True)
     
     # Segunda fila de cards
-    col3, col_space2, col4 = st.columns([5, 1, 5])
+    col_left2, col3, col_space2, col4, col_right2 = st.columns([0.1, 5, 1, 5, 0.1])
     
     with col3:
         st.markdown("""
             <div class="data-card">
                 <div>
-                    <div class="data-card-icon">🏠</div>
                     <div class="data-card-title">Violencia Intrafamiliar</div>
-                    <div class="data-card-meta">📊 Reportes de violencia doméstica</div>
-                    <div class="data-card-meta">📅 Actualizado: Dic 2024</div>
-                    <div class="data-card-meta">🔢 8,921 registros</div>
+                    <div class="data-card-meta">Reportes de violencia doméstica</div>
+                    <div class="data-card-meta">Actualizado: Dic 2024</div>
+                    <div class="data-card-meta">8,921 registros</div>
                 </div>
             </div>
         """, unsafe_allow_html=True)
@@ -389,11 +386,10 @@ elif st.session_state.page == 'Portal de Datos':
         st.markdown("""
             <div class="data-card">
                 <div>
-                    <div class="data-card-icon">🏙️</div>
                     <div class="data-card-title">Delitos en Bucaramanga</div>
-                    <div class="data-card-meta">📊 Datos específicos del municipio</div>
-                    <div class="data-card-meta">📅 Actualizado: Dic 2024</div>
-                    <div class="data-card-meta">🔢 42,156 registros</div>
+                    <div class="data-card-meta">Datos específicos del municipio</div>
+                    <div class="data-card-meta">Actualizado: Dic 2024</div>
+                    <div class="data-card-meta">42,156 registros</div>
                 </div>
             </div>
         """, unsafe_allow_html=True)
@@ -410,7 +406,7 @@ elif st.session_state.page == 'Portal de Datos':
     st.markdown("""
         <div style="text-align: center; margin-top: 3rem;">
             <p style="font-family: 'Open Sans', sans-serif; color: #666;">
-                🔗 <a href="https://www.datos.gov.co" target="_blank" style="color: #003d82; text-decoration: none;">
+                <a href="https://www.datos.gov.co" target="_blank" style="color: #003d82; text-decoration: none;">
                     Ver más datasets en Datos Abiertos Colombia
                 </a>
             </p>
