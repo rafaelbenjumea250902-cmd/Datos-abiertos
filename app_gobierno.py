@@ -338,8 +338,7 @@ elif st.session_state.page == 'Portal de Datos':
             if st.button("📊 Ver Dataset", key="ver_delitos_sexuales", use_container_width=True):
                 st.info("🔗 [Ver en Datos Abiertos](https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Delitos-sexuales-Polic-a-Nacional/fpe5-yrmw/about_data)")
         with col_desc1:
-            if st.button("⬇️ Descargar", key="desc_delitos_sexuales", use_container_width=True):
-                st.success("Redirigiendo a descarga...")
+            st.link_button("⬇️ Descargar", "https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Delitos-sexuales-Polic-a-Nacional/fpe5-yrmw/about_data", use_container_width=True)
     
     with col2:
         st.markdown("""
@@ -359,8 +358,7 @@ elif st.session_state.page == 'Portal de Datos':
             if st.button("📊 Ver Dataset", key="ver_hurto", use_container_width=True):
                 st.info("🔗 [Ver en Datos Abiertos](https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Hurto-por-Modalidades-Polic-a-Nacional/6sqw-8cg5/about_data)")
         with col_desc2:
-            if st.button("⬇️ Descargar", key="desc_hurto", use_container_width=True):
-                st.success("Redirigiendo a descarga...")
+            st.link_button("⬇️ Descargar", "https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Hurto-por-Modalidades-Polic-a-Nacional/6sqw-8cg5/about_data", use_container_width=True)
     
     st.markdown("<br><br><br>", unsafe_allow_html=True)
     
@@ -385,8 +383,7 @@ elif st.session_state.page == 'Portal de Datos':
             if st.button("📊 Ver Dataset", key="ver_violencia", use_container_width=True):
                 st.info("🔗 [Ver en Datos Abiertos](https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Delito-Violencia-Intrafamiliar-Polic-a-Nac/vuyt-mqpw/about_data)")
         with col_desc3:
-            if st.button("⬇️ Descargar", key="desc_violencia", use_container_width=True):
-                st.success("Redirigiendo a descarga...")
+            st.link_button("⬇️ Descargar", "https://www.datos.gov.co/Seguridad-y-Defensa/Reporte-Delito-Violencia-Intrafamiliar-Polic-a-Nac/vuyt-mqpw/about_data", use_container_width=True)
     
     with col4:
         st.markdown("""
@@ -406,8 +403,7 @@ elif st.session_state.page == 'Portal de Datos':
             if st.button("📊 Ver Dataset", key="ver_bucaramanga", use_container_width=True):
                 st.info("🔗 [Ver en Datos Abiertos](https://www.datos.gov.co/Seguridad-y-Defensa/40Delitos-ocurridos-en-el-Municipio-de-Bucaramanga/75fz-q98y/about_data)")
         with col_desc4:
-            if st.button("⬇️ Descargar", key="desc_bucaramanga", use_container_width=True):
-                st.success("Redirigiendo a descarga...")
+            st.link_button("⬇️ Descargar", "https://www.datos.gov.co/Seguridad-y-Defensa/40Delitos-ocurridos-en-el-Municipio-de-Bucaramanga/75fz-q98y/about_data", use_container_width=True)
     
     st.markdown("<br><br>", unsafe_allow_html=True)
     
