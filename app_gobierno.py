@@ -264,4 +264,123 @@ elif st.session_state.page == 'Rutas de Atención':
         st.image("assets/rutas-atencion.png", use_column_width=True)
 
 elif st.session_state.page == 'Cuéntanos tu Opinión':
-    st.markdown('<div class="placeholder-content"><h2>Cuéntanos tu Opinión</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
+    st.markdown('<div style="padding-top: 10vh;"></div>', unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns([0.15, 0.7, 0.15])
+    with col2:
+        st.markdown("""
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2rem; color: #003d82; margin-bottom: 0.5rem;">
+                    Cuéntanos tu Opinión
+                </h2>
+                <p style="font-family: 'Open Sans', sans-serif; font-size: 1rem; color: #666;">
+                    Tu retroalimentación es importante para mejorar el Observatorio de Seguridad
+                </p>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        with st.form("formulario_opinion", clear_on_submit=True):
+            st.markdown("### Información Personal")
+            
+            col_nombre, col_email = st.columns(2)
+            with col_nombre:
+                nombre = st.text_input("Nombre completo *", placeholder="Ej: Juan Pérez")
+            with col_email:
+                email = st.text_input("Correo electrónico *", placeholder="ejemplo@correo.com")
+            
+            col_municipio, col_edad = st.columns(2)
+            with col_municipio:
+                municipio = st.selectbox("Municipio *", [
+                    "Selecciona tu municipio",
+                    "Bucaramanga",
+                    "Floridablanca", 
+                    "Girón",
+                    "Piedecuesta",
+                    "Barrancabermeja",
+                    "San Gil",
+                    "Socorro",
+                    "Vélez",
+                    "Barichara",
+                    "Otro"
+                ])
+            with col_edad:
+                rango_edad = st.selectbox("Rango de edad", [
+                    "Prefiero no decir",
+                    "18-25 años",
+                    "26-35 años",
+                    "36-45 años",
+                    "46-55 años",
+                    "56-65 años",
+                    "Más de 65 años"
+                ])
+            
+            st.markdown("### Evaluación del Observatorio")
+            
+            col_usabilidad, col_informacion = st.columns(2)
+            with col_usabilidad:
+                usabilidad = st.select_slider(
+                    "¿Qué tan fácil fue navegar en la plataforma?",
+                    options=["Muy difícil", "Difícil", "Regular", "Fácil", "Muy fácil"],
+                    value="Regular"
+                )
+            with col_informacion:
+                informacion = st.select_slider(
+                    "¿La información fue útil?",
+                    options=["Nada útil", "Poco útil", "Moderadamente útil", "Útil", "Muy útil"],
+                    value="Útil"
+                )
+            
+            chatbot_util = st.radio(
+                "¿Utilizaste el asistente virtual Lupita?",
+                ["No lo utilicé", "Sí, y fue útil", "Sí, pero no fue útil"],
+                horizontal=True
+            )
+            
+            if chatbot_util != "No lo utilicé":
+                calificacion_lupita = st.slider(
+                    "Califica tu experiencia con Lupita (1-5)",
+                    min_value=1,
+                    max_value=5,
+                    value=3
+                )
+            
+            st.markdown("### Sugerencias y Comentarios")
+            
+            mejoras = st.multiselect(
+                "¿Qué te gustaría ver mejorado? (Puedes seleccionar varias opciones)",
+                [
+                    "Más datos y estadísticas",
+                    "Mejor diseño visual",
+                    "Información más actualizada",
+                    "Más opciones de filtrado",
+                    "Descarga de reportes",
+                    "Tutoriales o guías de uso",
+                    "Aplicación móvil",
+                    "Otro"
+                ]
+            )
+            
+            comentarios = st.text_area(
+                "Comentarios adicionales",
+                placeholder="Cuéntanos qué piensas sobre el Observatorio de Seguridad...",
+                height=150
+            )
+            
+            col_privacidad, col_submit = st.columns([3, 1])
+            with col_privacidad:
+                acepta_terminos = st.checkbox(
+                    "Acepto que mis datos sean procesados según la política de privacidad",
+                    value=False
+                )
+            
+            with col_submit:
+                submitted = st.form_submit_button("Enviar", use_container_width=True)
+            
+            if submitted:
+                if not nombre or not email or municipio == "Selecciona tu municipio":
+                    st.error("⚠️ Por favor completa todos los campos obligatorios (*)")
+                elif not acepta_terminos:
+                    st.error("⚠️ Debes aceptar la política de privacidad para continuar")
+                else:
+                    st.success("✅ ¡Gracias por tu opinión! Tu retroalimentación ha sido enviada correctamente.")
+                    st.balloons()
