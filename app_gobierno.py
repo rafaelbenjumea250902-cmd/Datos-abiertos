@@ -259,7 +259,9 @@ elif st.session_state.page == 'Portal de Datos':
 
 elif st.session_state.page == 'Rutas de Atención':
     st.markdown('<div style="padding-top: 10vh;"></div>', unsafe_allow_html=True)
-    st.image("assets/rutas-atencion.png", use_column_width=True)
+    col1, col2, col3 = st.columns([0.05, 0.9, 0.05])
+    with col2:
+        st.image("assets/rutas-atencion.png", use_column_width=True)
 
 elif st.session_state.page == 'Cuéntanos tu Opinión':
     st.markdown('<div class="placeholder-content"><h2>Cuéntanos tu Opinión</h2><p>Contenido próximamente</p></div>', unsafe_allow_html=True)
