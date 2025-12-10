@@ -191,7 +191,15 @@ elif st.session_state.page == 'Estadísticas':
         st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9", height=1381, scrolling=False)
     
     with col_chat:
-        st.markdown('<div style="border: 3px solid #003d82; border-radius: 11px; overflow: hidden;">', unsafe_allow_html=True)
+        st.markdown('''
+            <div style="
+                border: 3px solid #003d82; 
+                border-radius: 11px; 
+                overflow: hidden;
+                height: 100%;
+                box-sizing: border-box;
+            ">
+        ''', unsafe_allow_html=True)
         
         LUPITA_AVATAR = "assets/lupita.png"
         USER_AVATAR = "assets/user-avatar.png"
