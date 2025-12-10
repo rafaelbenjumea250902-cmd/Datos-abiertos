@@ -98,15 +98,17 @@ st.markdown("""
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-radius: 11px 11px 0 0;
+    border-top: none;
 }
 
 .chat-header h3 {
-    font-size: 1rem;
+    font-size: 28px;
     margin: 0;
     color: white;
+    text-align: center;
 }
 
 .chat-header p {
@@ -208,7 +210,6 @@ elif st.session_state.page == 'Estadísticas':
             <div class="chat-header">
                 <div>
                     <h3>Lupita - Asistente Virtual</h3>
-                    <p>Observatorio de Seguridad</p>
                 </div>
             </div>
         """, unsafe_allow_html=True)
