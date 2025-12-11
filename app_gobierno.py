@@ -29,6 +29,18 @@ st.markdown("""
     padding: 0 !important;
 }
 
+.stApp {
+    background-color: #fff9e6 !important;
+}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #fff9e6 !important;
+}
+
+section[data-testid="stMain"] {
+    background-color: #fff9e6 !important;
+}
+
 .block-container {
     padding: 0 !important;
     max-width: 100% !important;
