@@ -215,7 +215,6 @@ if st.session_state.page == 'Inicio':
         st.markdown('<h3 style="font-family: Montserrat, sans-serif; font-size: 1.3rem; color: #003d82; margin: 2rem 0 1rem 0; font-weight: 600;">¿Qué encontrarás aquí?</h3>', unsafe_allow_html=True)
         st.markdown('''
             <ul style="font-family: Open Sans, sans-serif; font-size: 1rem; color: #444; line-height: 2; list-style-position: inside;">
-                <li><strong>Estadísticas en Tiempo Real:</strong> Dashboards interactivos con datos actualizados sobre delitos y seguridad</li>
                 <li><strong>Asistente Virtual Lupita:</strong> Consulta información específica mediante inteligencia artificial</li>
                 <li><strong>Datos Abiertos:</strong> Acceso a datasets completos para análisis y descarga</li>
                 <li><strong>Rutas de Atención:</strong> Líneas directas de contacto para reportar y recibir ayuda</li>
