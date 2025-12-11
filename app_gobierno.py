@@ -344,7 +344,7 @@ elif st.session_state.page == 'Portal de Datos':
     """, unsafe_allow_html=True)
     
     # Primera fila de cards
-    col_left, col1, col_space1, col2, col_right = st.columns([0.1, 5, 1, 5, 0.1])
+    col_left, col1, col_space1, col2, col_right = st.columns([1, 5, 1, 5, 1])
     
     with col1:
         st.markdown("""
@@ -387,7 +387,7 @@ elif st.session_state.page == 'Portal de Datos':
     st.markdown("<br><br><br>", unsafe_allow_html=True)
     
     # Segunda fila de cards
-    col_left2, col3, col_space2, col4, col_right2 = st.columns([0.1, 5, 1, 5, 0.1])
+    col_left2, col3, col_space2, col4, col_right2 = st.columns([1, 5, 1, 5, 1])
     
     with col3:
         st.markdown("""
