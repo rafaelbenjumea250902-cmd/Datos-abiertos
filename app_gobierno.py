@@ -1,19 +1,7 @@
 import streamlit as st
 from chatbot.llm_handler import ChatbotHandler
-import base64
 
 st.set_page_config(page_title="Observatorio de Seguridad", page_icon="🏛️", layout="wide")
-
-# Cargar imagen de fondo
-def get_base64_image(image_path):
-    try:
-        with open(image_path, "rb") as f:
-            data = f.read()
-        return base64.b64encode(data).decode()
-    except:
-        return None
-
-bg_image = get_base64_image("assets/fondo.jpg")
 
 if 'page' not in st.session_state:
     st.session_state.page = 'Inicio'
@@ -180,20 +168,6 @@ iframe {
 }
 </style>
 """, unsafe_allow_html=True)
-
-# Aplicar imagen de fondo si existe
-if bg_image:
-    st.markdown(f"""
-    <style>
-    .main {{
-        background-image: url("data:image/jpeg;base64,{bg_image}") !important;
-        background-size: cover !important;
-        background-position: center !important;
-        background-attachment: fixed !important;
-        background-repeat: no-repeat !important;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
 
 st.markdown('<div class="header-section"><div class="logo-container-center">', unsafe_allow_html=True)
 
