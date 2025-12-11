@@ -320,20 +320,6 @@ elif st.session_state.page == 'Portal de Datos':
             padding-left: 1rem !important;
             padding-right: 1rem !important;
         }
-        
-        /* Estilo Ghost para botones */
-        .stButton button, .stLinkButton a {
-            background: transparent !important;
-            border: 2px solid #003d82 !important;
-            color: #003d82 !important;
-            font-weight: 600 !important;
-            transition: all 0.3s ease !important;
-        }
-        
-        .stButton button:hover, .stLinkButton a:hover {
-            background: #003d82 !important;
-            color: white !important;
-        }
         </style>
     """, unsafe_allow_html=True)
     
