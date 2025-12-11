@@ -353,7 +353,7 @@ elif st.session_state.page == 'Portal de Datos':
             color: #666 !important;
             font-family: 'Montserrat', sans-serif !important;
             font-weight: 500 !important;
-            font-size: 0.95rem !important;
+            font-size: 1.2rem !important;
             padding: 0.5rem 1rem !important;
             border-radius: 0 !important;
             transition: all 0.2s ease !important;
