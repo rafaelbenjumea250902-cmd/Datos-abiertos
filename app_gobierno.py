@@ -320,6 +320,26 @@ elif st.session_state.page == 'Portal de Datos':
             padding-left: 1rem !important;
             padding-right: 1rem !important;
         }
+        
+        /* Estilo botones tipo navegación (como el header) */
+        .stButton button, .stLinkButton a {
+            background: transparent !important;
+            border: none !important;
+            border-bottom: 2px solid transparent !important;
+            color: #666 !important;
+            font-family: 'Montserrat', sans-serif !important;
+            font-weight: 500 !important;
+            font-size: 0.95rem !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 0 !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        .stButton button:hover, .stLinkButton a:hover {
+            color: #003d82 !important;
+            border-bottom: 2px solid #003d82 !important;
+            background: transparent !important;
+        }
         </style>
     """, unsafe_allow_html=True)
     
