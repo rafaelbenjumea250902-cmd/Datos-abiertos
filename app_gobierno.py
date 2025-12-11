@@ -46,11 +46,15 @@ section[data-testid="stMain"] {
     max-width: 100% !important;
 }
 
+header[data-testid="stHeader"] {
+    display: none !important;
+}
+
 .header-section {
-    background: white;
+    background: transparent;
     padding: 1rem 2rem 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border-bottom: 1px solid #e5e7eb;
+    box-shadow: none;
+    border-bottom: none;
 }
 
 .logo-container-center {
