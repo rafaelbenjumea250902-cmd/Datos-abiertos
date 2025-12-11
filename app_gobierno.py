@@ -196,8 +196,7 @@ if st.session_state.page == 'Inicio':
         
         st.markdown('<p style="font-family: Open Sans, sans-serif; font-size: 1.2rem; color: #666; line-height: 1.8; margin-bottom: 2rem;">Una plataforma integral de análisis y visualización de datos sobre seguridad ciudadana en el departamento de Santander. Nuestro objetivo es proporcionar información actualizada, confiable y accesible para la toma de decisiones informadas en materia de seguridad pública.</p>', unsafe_allow_html=True)
         
-        st.markdown('<div style="background: #f8f9fa; border-left: 4px solid #003d82; padding: 2rem; margin: 2rem 0; text-align: left;">', unsafe_allow_html=True)
-        st.markdown('<h3 style="font-family: Montserrat, sans-serif; font-size: 1.3rem; color: #003d82; margin-bottom: 1rem; font-weight: 600;">¿Qué encontrarás aquí?</h3>', unsafe_allow_html=True)
+        st.markdown('<h3 style="font-family: Montserrat, sans-serif; font-size: 1.3rem; color: #003d82; margin: 2rem 0 1rem 0; font-weight: 600;">¿Qué encontrarás aquí?</h3>', unsafe_allow_html=True)
         st.markdown('''
             <ul style="font-family: Open Sans, sans-serif; font-size: 1rem; color: #444; line-height: 2; list-style-position: inside;">
                 <li><strong>Estadísticas en Tiempo Real:</strong> Dashboards interactivos con datos actualizados sobre delitos y seguridad</li>
@@ -206,7 +205,6 @@ if st.session_state.page == 'Inicio':
                 <li><strong>Rutas de Atención:</strong> Líneas directas de contacto para reportar y recibir ayuda</li>
             </ul>
         ''', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
         
         st.markdown('<p style="font-family: Open Sans, sans-serif; font-size: 1rem; color: #666; line-height: 1.8; margin-top: 2rem;">Este observatorio es una iniciativa de la <strong>Gobernación de Santander</strong> para fortalecer la transparencia, promover la participación ciudadana y mejorar la seguridad en nuestro departamento.</p>', unsafe_allow_html=True)
         
