@@ -25,11 +25,7 @@ st.markdown("""
 }
 
 .main {
-    background-image: url('assets/fondo.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #fffbea 0%, #fff9c4 50%, #fffbea 100%);
     padding: 0 !important;
 }
 
