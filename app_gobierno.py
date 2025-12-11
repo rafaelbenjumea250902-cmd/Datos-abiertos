@@ -25,11 +25,7 @@ st.markdown("""
 }
 
 .main {
-    background-image: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=1920&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background-color: #fff9e6 !important;
     padding: 0 !important;
 }
 
