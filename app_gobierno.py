@@ -223,8 +223,11 @@ elif st.session_state.page == 'Estadísticas':
     with col_chat:
         st.markdown('''
             <div style="
-                border: 3px solid #003d82; 
-                border-radius: 11px; 
+                border-left: 3px solid #003d82;
+                border-right: 3px solid #003d82;
+                border-bottom: 3px solid #003d82;
+                border-top: none;
+                border-radius: 0 0 11px 11px; 
                 overflow: hidden;
                 height: 100%;
                 box-sizing: border-box;
