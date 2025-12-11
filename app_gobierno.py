@@ -244,7 +244,7 @@ elif st.session_state.page == 'Estadísticas':
             </div>
         """, unsafe_allow_html=True)
         
-        chat_container = st.container(height=854)
+        chat_container = st.container(height=811)
         
         with chat_container:
             if len(st.session_state.chat_history) == 0:
