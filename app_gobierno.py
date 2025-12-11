@@ -25,7 +25,11 @@ st.markdown("""
 }
 
 .main {
-    background: linear-gradient(135deg, #fffbea 0%, #fff9c4 50%, #fffbea 100%);
+    background-image: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     padding: 0 !important;
 }
 
