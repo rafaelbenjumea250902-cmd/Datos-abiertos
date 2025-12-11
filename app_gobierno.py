@@ -218,7 +218,7 @@ elif st.session_state.page == 'Estadísticas':
     col_dash, col_chat = st.columns([70, 30], gap="small")
     
     with col_dash:
-        st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9", height=1105, scrolling=False)
+        st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiZGNkYWQ1MzgtMTNhYi00MGNiLWE4MGItYjU3MGNlMjlkNjQ2IiwidCI6ImEyYmE0MzQ1LTc3NjQtNGQyMi1iNmExLTdjZjUyOGYzYjNhNSIsImMiOjR9", height=995, scrolling=False)
     
     with col_chat:
         st.markdown('''
@@ -244,7 +244,7 @@ elif st.session_state.page == 'Estadísticas':
             </div>
         """, unsafe_allow_html=True)
         
-        chat_container = st.container(height=949)
+        chat_container = st.container(height=854)
         
         with chat_container:
             if len(st.session_state.chat_history) == 0:
