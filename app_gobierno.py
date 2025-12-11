@@ -186,7 +186,46 @@ for i, page in enumerate(pages):
         st.rerun()
 
 if st.session_state.page == 'Inicio':
-    st.markdown('<div class="placeholder-content"><h2>Bienvenido al Observatorio de Seguridad</h2><p>Selecciona una sección del menú</p></div>', unsafe_allow_html=True)
+    st.markdown('<div style="padding-top: 10vh;"></div>', unsafe_allow_html=True)
+    
+    col_left, col_center, col_right = st.columns([0.1, 0.8, 0.1])
+    with col_center:
+        st.markdown("""
+            <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+                <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: #003d82; margin-bottom: 1.5rem; font-weight: 700;">
+                    Bienvenido al Observatorio de Seguridad de Santander
+                </h1>
+                
+                <p style="font-family: 'Open Sans', sans-serif; font-size: 1.2rem; color: #666; line-height: 1.8; margin-bottom: 2rem;">
+                    Una plataforma integral de análisis y visualización de datos sobre seguridad ciudadana en el departamento de Santander. 
+                    Nuestro objetivo es proporcionar información actualizada, confiable y accesible para la toma de decisiones informadas 
+                    en materia de seguridad pública.
+                </p>
+                
+                <div style="background: #f8f9fa; border-left: 4px solid #003d82; padding: 2rem; margin: 2rem 0; text-align: left;">
+                    <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.3rem; color: #003d82; margin-bottom: 1rem; font-weight: 600;">
+                        ¿Qué encontrarás aquí?
+                    </h3>
+                    <ul style="font-family: 'Open Sans', sans-serif; font-size: 1rem; color: #444; line-height: 2; list-style-position: inside;">
+                        <li><strong>Estadísticas en Tiempo Real:</strong> Dashboards interactivos con datos actualizados sobre delitos y seguridad</li>
+                        <li><strong>Asistente Virtual Lupita:</strong> Consulta información específica mediante inteligencia artificial</li>
+                        <li><strong>Datos Abiertos:</strong> Acceso a datasets completos para análisis y descarga</li>
+                        <li><strong>Rutas de Atención:</strong> Líneas directas de contacto para reportar y recibir ayuda</li>
+                    </ul>
+                </div>
+                
+                <p style="font-family: 'Open Sans', sans-serif; font-size: 1rem; color: #666; line-height: 1.8; margin-top: 2rem;">
+                    Este observatorio es una iniciativa de la <strong>Gobernación de Santander</strong> para fortalecer la transparencia, 
+                    promover la participación ciudadana y mejorar la seguridad en nuestro departamento.
+                </p>
+                
+                <div style="margin-top: 3rem;">
+                    <p style="font-family: 'Montserrat', sans-serif; font-size: 1rem; color: #999;">
+                        Selecciona una sección del menú superior para comenzar
+                    </p>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
 
 elif st.session_state.page == 'Estadísticas':
     st.markdown('<div style="padding-top: 5vh;"></div>', unsafe_allow_html=True)
