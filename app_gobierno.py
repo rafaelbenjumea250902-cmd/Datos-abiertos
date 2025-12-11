@@ -25,7 +25,11 @@ st.markdown("""
 }
 
 .main {
-    background: #ffffff;
+    background-image: url('assets/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     padding: 0 !important;
 }
 
